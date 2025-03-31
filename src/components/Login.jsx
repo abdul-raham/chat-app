@@ -5,6 +5,18 @@ import "../styles.css";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebase";
 
+const registerUser = async (email, password, name) => {
+  try {
+    const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+    await updateProfile(userCredential.user, {
+      displayName: name, // Set display name
+    });
+    console.log("User registered:", userCredential.user);
+  } catch (error) {
+    console.error("Registration Error:", error.message);
+  }
+};
+
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
