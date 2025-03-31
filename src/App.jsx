@@ -25,6 +25,7 @@ function App() {
       <Routes>
         <Route path="/login" element={user ? <Navigate to="/chat" /> : <Login />} />
         <Route path="/register" element={user ? <Navigate to="/chat" /> : <Register />} />
+        <Route path="/chat" element={<Chat />} /> 
         <Route path="/chat" element={<ProtectedRoute user={user} component={Chat} />} />
         <Route path="*" element={<Navigate to={user ? "/chat" : "/login"} />} />
       </Routes>
